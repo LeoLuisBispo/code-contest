@@ -278,7 +278,7 @@ class App extends Component {
                 <span className={`userStatus ${this.state.userStatus}`} />
               </div>
               <div className="searchBoxContainer">
-                {/* TODO Insert here the search box */}
+                <SearchBox/>
               </div>
               <div className="orderBy">
                 <form>
@@ -289,7 +289,7 @@ class App extends Component {
                 {this.searchUser
                   .filter(user => user.username !== this.state.user)
                   .map((user, i) => {
-                    {/* TODO Insert here the chat preview */}
+                    // <ChatPreview user={user} key={i} />
                     return null;
                   })}
               </div>
