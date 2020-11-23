@@ -278,10 +278,15 @@ class App extends Component {
                 <span className={`userStatus ${this.state.userStatus}`} />
               </div>
               <div className="searchBoxContainer">
-                <SearchBox 
-                  placeholder="cerca"
+                <SearchBox
+                  placeholder="Seach User"
+                  onChange={(e) =>
+                    this.setState({ searchValue: e.target.value })
+                  }
                   value={this.state.searchValue}
-                  onChange={ e => this.searchUser(e.target.value)}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
                 />
               </div>
               <div className="orderBy">
@@ -291,7 +296,18 @@ class App extends Component {
                 {this.searchUser
                   .filter((user) => user.username !== this.state.user)
                   .map((user, i) => (
-                    <ChatPreview user={user} key={i} />
+                    
+                    <ChatPreview 
+                    title={user.name} 
+                    key={i} 
+                    status={user.status}
+                    active={user.active}
+                    lastMessage={this.state.listUsers.lastMessage}
+                    infoPreview={user.infoPreview}
+                    
+                    >
+
+                    </ChatPreview>
                     // return null;
                   ))}
               </div>
