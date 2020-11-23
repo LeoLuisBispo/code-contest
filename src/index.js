@@ -290,24 +290,39 @@ class App extends Component {
                 />
               </div>
               <div className="orderBy">
-                <form>{/* TODO Insert here the order by select */}</form>
+                <form>
+                  {this.onSelectOrderBy}
+                </form>
               </div>
               <div className="chatList">
                 {this.searchUser
                   .filter((user) => user.username !== this.state.user)
                   .map((user, i) => (
-                    
-                    <ChatPreview 
-                    title={user.name} 
-                    key={i} 
-                    status={user.status}
-                    active={user.active}
-                    lastMessage={this.state.listUsers.lastMessage}
-                    infoPreview={user.infoPreview}
-                    
-                    >
-
-                    </ChatPreview>
+                    <ChatPreview
+                      key={i}
+                      title={user.username}
+                      lastMessage={{
+                        message:
+                          this.state.rooms[user.username] &&
+                          this.state.rooms[user.username].lastMessage
+                            ? this.state.rooms[user.username].lastMessage.msg
+                            : "",
+                        time:
+                          this.state.rooms[user.username] &&
+                          this.state.rooms[user.username].lastMessage
+                            ? this.state.rooms[user.username].lastMessage.ts
+                            : "",
+                      }}
+                      status={user.status}
+                      active={this.state.activeUser.username === user.username}
+                      onClick={() => {
+                        this.createDirectMessageChat(user.username);
+                        this.setState({
+                          activeUser: user,
+                          messageValue: "",
+                        });
+                      }}
+                    />
                     // return null;
                   ))}
               </div>
