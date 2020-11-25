@@ -291,7 +291,14 @@ class App extends Component {
               </div>
               <div className="orderBy">
                 <form>
-                  {this.onSelectOrderBy}
+                  <select
+                    value={this.state.orderByValue}
+                    onChange={(e) => this.onSelectOrderBy(e.target.value)}
+                  >
+                    <option value="nameDESC">Name DESC</option>
+                    <option value="nameASC">Name ASC</option>
+                    <option value="status">Status</option>
+                  </select>
                 </form>
               </div>
               <div className="chatList">
@@ -343,7 +350,7 @@ class App extends Component {
                   this.state.rooms[this.state.activeUser.username].messages.map(
                     (message) => {
                       {
-                        /* TODO Insert here the messages */
+                        
                       }
                       return null;
                     }
@@ -351,7 +358,11 @@ class App extends Component {
               </div>
               {this.state.activeUser.username && (
                 <div className="sendBoxContainer">
-                  {/* TODO Insert here the sendbox */}
+                  <SendBox 
+                  onChange={(e) => this.setState({messageValue: e.target.value})} onSubmit={this.callApiPostMessage} 
+                  value={this.state.messageValue}
+                 
+                  />
                 </div>
               )}
             </div>
