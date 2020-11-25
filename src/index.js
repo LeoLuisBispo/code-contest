@@ -354,6 +354,7 @@ class App extends Component {
                                 key={i}
                                 type="text"
                                 message={message.msg}
+                                onClick={() => {}}
                                 dateMessage={message.ts}
                                 received={message.groupable}
                               />
