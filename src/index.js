@@ -348,11 +348,16 @@ class App extends Component {
               <div className="messageList">
                 {this.state.rooms[this.state.activeUser.username] &&
                   this.state.rooms[this.state.activeUser.username].messages.map(
-                    (message) => {
-                      {
-                        
-                      }
-                      return null;
+                    (message, i) => {
+                      console.log(message)
+                      return <Message 
+                                key={i}
+                                type="text"
+                                message={message.msg}
+                                dateMessage={message.ts}
+                                received={message.groupable}
+                              />
+                      
                     }
                   )}
               </div>

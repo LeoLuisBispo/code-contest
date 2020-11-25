@@ -121,8 +121,8 @@ export class Api {
         'X-User-Id': userId
       },
       body: JSON.stringify({
-        activeRoom: activeRoom,
-        message: message
+        roomId: activeRoom,
+        text: message
       })
     }).then(parse);
 }
